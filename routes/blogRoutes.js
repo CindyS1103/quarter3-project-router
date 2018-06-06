@@ -20,9 +20,10 @@ router.post('/blog', (req, res) => {
 })
 
 router.patch('/blog/:id', (req, res) => {
-
+console.log(req.body)
+console.log(req.params.id)
   knex('blog')
-    .update(req.body)
+    .update(req.body).where('id', req.params.id)
     .then(updatedBlog => {
       knex('blog').then(posts => res.json(posts))
     })
